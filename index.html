@@ -53,39 +53,79 @@
             line-height: 1.6;
         }
 
-        .gallery {
-            display: grid;
-            gap: 1rem;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            margin-bottom: 2rem;
-        }
-
         .category {
-            margin-bottom: 1.2rem;
+            margin: 2rem 0 0.8rem;
             font-size: clamp(1.2rem, 2.5vw, 1.6rem);
             letter-spacing: 0.03em;
         }
 
-        figure {
-            margin: 0;
+        .carousel {
             background: var(--card);
             border-radius: 14px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(58, 35, 20, 0.12);
+            margin-bottom: 1.5rem;
+        }
+
+        .slides {
+            position: relative;
+            min-height: 330px;
+        }
+
+        .slide {
+            display: none;
+            margin: 0;
+        }
+
+        .slide.active {
+            display: block;
         }
 
         img,
         video {
             display: block;
             width: 100%;
-            height: 250px;
+            height: 320px;
             object-fit: cover;
+            background: #1b1b1b;
+        }
+
+        img {
+            cursor: zoom-in;
         }
 
         figcaption {
             padding: 0.8rem 0.9rem 1rem;
             color: var(--muted);
             font-size: 0.95rem;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.6rem;
+            padding: 0.75rem 0.9rem 1rem;
+            border-top: 1px solid #e8ddd0;
+        }
+
+        .controls button {
+            border: none;
+            background: var(--accent);
+            color: #fff;
+            font-size: 0.95rem;
+            padding: 0.45rem 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .controls button:hover {
+            filter: brightness(0.95);
+        }
+
+        .counter {
+            color: var(--muted);
+            font-size: 0.92rem;
         }
 
         footer {
@@ -95,10 +135,51 @@
             font-size: 0.95rem;
         }
 
-        footer a {
+        footer a,
+        figcaption a {
             color: var(--accent);
             text-decoration: none;
             font-weight: 700;
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            z-index: 1000;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: min(100%, 1100px);
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
+            cursor: default;
+        }
+
+        .lightbox button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            border: none;
+            background: #fff;
+            color: #222;
+            font-size: 1.2rem;
+            line-height: 1;
+            border-radius: 999px;
+            width: 2rem;
+            height: 2rem;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -106,171 +187,80 @@
     <main>
         <section class="intro">
             <h1>Bailey's Food Portfolio</h1>
-            <p>A short gallery of dishes and pastries I have made. Every plate below was prepared by me.</p>
+            <p>Click through each section to view my work without scrolling through a long page.</p>
         </section>
 
-        <section aria-label="Food photo portfolio">
+        <section aria-label="Food portfolio sliders">
             <h2 class="category">Pastry/Baking</h2>
-            <div class="gallery">
-                <figure>
-                    <img src="./photos/pastry-baking/BRULEECAKE.jpg" alt="Brulee cake">
-                    <figcaption>Brulee cake</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/applebrioche.jpg" alt="Apple brioche">
-                    <figcaption>Apple brioche</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/PhotoRoom_20230827_012227.jpg" alt="Pastry photo PhotoRoom 20230827 012227">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/9F4BE331-D4EC-41DE-B754-BD2FA285DED3.jpg" alt="Pastry photo 9F4BE331 D4EC 41DE B754 BD2FA285DED3">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/image000000.jpg" alt="Pastry photo image000000">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_4728.jpg" alt="Pastry photo IMG 4728">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_5105.jpg" alt="Pastry photo IMG 5105">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_5116.jpg" alt="Pastry photo IMG 5116">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_5226.jpg" alt="Pastry photo IMG 5226">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_5725.jpg" alt="Pastry photo IMG 5725">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_5729.jpg" alt="Pastry photo IMG 5729">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_5764.jpg" alt="Pastry photo IMG 5764">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_5778.jpg" alt="Pastry photo IMG 5778">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_5816.jpg" alt="Pastry photo IMG 5816">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_5818.jpg" alt="Pastry photo IMG 5818">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_5874.png" alt="Pastry photo IMG 5874">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_5956.jpg" alt="Pastry photo IMG 5956">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_6025.jpg" alt="Pastry photo IMG 6025">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_6033.jpg" alt="Pastry photo IMG 6033">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_6130.jpg" alt="Pastry photo IMG 6130">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_6131.jpg" alt="Pastry photo IMG 6131">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_6760.jpg" alt="Pastry photo IMG 6760">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_6771.jpg" alt="Pastry photo IMG 6771">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_6821.png" alt="Pastry photo IMG 6821">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_6822.png" alt="Pastry photo IMG 6822">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_6841.png" alt="Pastry photo IMG 6841">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_6843.png" alt="Pastry photo IMG 6843">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_7007.png" alt="Pastry photo IMG 7007">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_7297.jpg" alt="Pastry photo IMG 7297">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_7402.jpg" alt="Pastry photo IMG 7402">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_7429.png" alt="Pastry photo IMG 7429">
-                    <figcaption>Pastry photo</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_7781.jpg" alt="Pastry creation">
-                    <figcaption>Pastry creation</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_7707.jpg" alt="Baked dessert">
-                    <figcaption>Baked dessert</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_7586.png" alt="Pastry plating">
-                    <figcaption>Pastry plating</figcaption>
-                </figure>
-                <figure>
-                    <img src="./photos/pastry-baking/IMG_7539.jpg" alt="House-made bake">
-                    <figcaption>House-made bake</figcaption>
-                </figure>
-                <figure>
-                    <video controls preload="metadata">
-                        <source src="./photos/pastry-baking/IMG_5755.mov" type="video/quicktime">
-                        Your browser does not support this video.
-                    </video>
-                    <figcaption>Pastry/Baking video</figcaption>
-                </figure>
+            <div class="carousel" data-carousel>
+                <div class="slides">
+                    <figure class="slide active"><img src="./photos/pastry-baking/BRULEECAKE.jpg" alt="Brulee cake" loading="lazy"><figcaption>Brulee cake</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/applebrioche.jpg" alt="Apple brioche" loading="lazy"><figcaption>Apple brioche</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/PhotoRoom_20230827_012227.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/9F4BE331-D4EC-41DE-B754-BD2FA285DED3.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/image000000.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_4728.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_5105.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_5116.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_5226.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_5725.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_5729.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_5764.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_5778.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_5816.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_5818.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_5874.png" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_5956.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_6025.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_6033.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_6130.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_6131.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_6760.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_6771.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_6821.png" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_6822.png" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_6841.png" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_6843.png" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_7007.png" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_7297.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_7402.jpg" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_7429.png" alt="Pastry photo" loading="lazy"><figcaption>Pastry photo</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_7539.jpg" alt="House-made bake" loading="lazy"><figcaption>House-made bake</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_7586.png" alt="Pastry plating" loading="lazy"><figcaption>Pastry plating</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_7707.jpg" alt="Baked dessert" loading="lazy"><figcaption>Baked dessert</figcaption></figure>
+                    <figure class="slide"><img src="./photos/pastry-baking/IMG_7781.jpg" alt="Pastry creation" loading="lazy"><figcaption>Pastry creation</figcaption></figure>
+                    <figure class="slide">
+                        <video controls preload="metadata" playsinline>
+                            <source src="./photos/pastry-baking/IMG_5755.mov">
+                            Your browser does not support this video.
+                        </video>
+                        <figcaption>Pastry/Baking video. If playback fails, <a href="./photos/pastry-baking/IMG_5755.mov">open video directly</a>.</figcaption>
+                    </figure>
+                </div>
+                <div class="controls">
+                    <button type="button" data-prev>Previous</button>
+                    <span class="counter" data-counter>1 / 1</span>
+                    <button type="button" data-next>Next</button>
+                </div>
             </div>
 
             <h2 class="category">Entrees & Appetizers</h2>
-            <div class="gallery">
-                <figure>
-                    <img src="./assets/desktop/image-grid-2.jpg" alt="Entree presentation">
-                    <figcaption>Chef-style entree plating</figcaption>
-                </figure>
-                <figure>
-                    <img src="./assets/desktop/image-grid-3.jpg" alt="Appetizer presentation">
-                    <figcaption>Small-plate appetizer</figcaption>
-                </figure>
+            <div class="carousel" data-carousel>
+                <div class="slides">
+                    <figure class="slide active">
+                        <img src="./assets/desktop/image-grid-2.jpg" alt="Entree presentation" loading="lazy">
+                        <figcaption>Chef-style entree plating</figcaption>
+                    </figure>
+                    <figure class="slide">
+                        <img src="./assets/desktop/image-grid-3.jpg" alt="Appetizer presentation" loading="lazy">
+                        <figcaption>Small-plate appetizer</figcaption>
+                    </figure>
+                </div>
+                <div class="controls">
+                    <button type="button" data-prev>Previous</button>
+                    <span class="counter" data-counter>1 / 1</span>
+                    <button type="button" data-next>Next</button>
+                </div>
             </div>
         </section>
 
@@ -278,5 +268,63 @@
             Want to connect? <a href="mailto:hello@example.com">Email me</a> or find me on Instagram.
         </footer>
     </main>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <button type="button" id="lightbox-close" aria-label="Close enlarged image">x</button>
+        <img id="lightbox-image" src="" alt="">
+    </div>
+
+    <script>
+        document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+            const slides = Array.from(carousel.querySelectorAll(".slide"));
+            const prevBtn = carousel.querySelector("[data-prev]");
+            const nextBtn = carousel.querySelector("[data-next]");
+            const counter = carousel.querySelector("[data-counter]");
+            let index = 0;
+
+            const setActive = (newIndex) => {
+                slides[index].classList.remove("active");
+                index = (newIndex + slides.length) % slides.length;
+                slides[index].classList.add("active");
+                counter.textContent = (index + 1) + " / " + slides.length;
+            };
+
+            prevBtn.addEventListener("click", () => setActive(index - 1));
+            nextBtn.addEventListener("click", () => setActive(index + 1));
+            counter.textContent = "1 / " + slides.length;
+        });
+
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImage = document.getElementById("lightbox-image");
+        const lightboxClose = document.getElementById("lightbox-close");
+
+        const closeLightbox = () => {
+            lightbox.classList.remove("open");
+            lightbox.setAttribute("aria-hidden", "true");
+            lightboxImage.src = "";
+            lightboxImage.alt = "";
+        };
+
+        document.querySelectorAll(".slide img").forEach((img) => {
+            img.addEventListener("click", () => {
+                lightboxImage.src = img.src;
+                lightboxImage.alt = img.alt || "Enlarged photo";
+                lightbox.classList.add("open");
+                lightbox.setAttribute("aria-hidden", "false");
+            });
+        });
+
+        lightboxClose.addEventListener("click", closeLightbox);
+        lightbox.addEventListener("click", (event) => {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && lightbox.classList.contains("open")) {
+                closeLightbox();
+            }
+        });
+    </script>
 </body>
 </html>
